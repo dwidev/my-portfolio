@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <NavBarComponent />
 
@@ -10,7 +8,18 @@
         <div class="row mb-5 align-items-center">
           <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
             <h2>Hey, I'm Fahmi dwi syahputra</h2>
-            <p class="mb-0">Professional Freelancer &amp; Mobile Developer</p>
+            <p class="mb-0">Mobile &amp; Web Developer</p>
+            <div class="col-sm-6 social mt-3">
+              <a href="https://github.com/dwidev" target="_blank"
+                ><span class="bi bi-github"></span
+              ></a>
+              <a href="https://www.instagram.com/dwifhmi/reels/" target="_blank"
+                ><span class="bi bi-instagram"></span
+              ></a>
+              <a href="https://www.linkedin.com/in/fahmi-dwi-syahputra-995994130/" target="_blank"
+                ><span class="bi bi-linkedin"></span
+              ></a>
+            </div>
           </div>
           <div
             class="col-md-12 col-lg-6 text-start text-lg-end"
@@ -19,75 +28,62 @@
           >
             <div id="filters" class="filters">
               <a href="#" data-filter="*" class="active">All</a>
+              <a href="#" data-filter=".mobile">Mobile</a>
               <a href="#" data-filter=".web">Web</a>
-              <a href="#" data-filter=".design">Design</a>
-              <a href="#" data-filter=".branding">Branding</a>
-              <a href="#" data-filter=".photography">Photography</a>
+              <a href="#" data-filter=".uiux">UI/UX</a>
             </div>
           </div>
         </div>
+
         <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-          <div class="item web col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="work-single.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>Boxed Water</h3>
-                <span>Web</span>
-              </div>
-              <img class="img-fluid" src="../assets/img/img_1.jpg" />
-            </a>
-          </div>
-          <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="work-single.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>Build Indoo</h3>
-                <span>Photography</span>
-              </div>
-              <img class="img-fluid" src="../assets/img/img_2.jpg" />
-            </a>
-          </div>
-          <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="work-single.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>Cocooil</h3>
-                <span>Branding</span>
-              </div>
-              <img class="img-fluid" src="../assets/img/img_3.jpg" />
-            </a>
-          </div>
-          <div class="item design col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="work-single.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>Nike Shoe</h3>
-                <span>Design</span>
-              </div>
-              <img class="img-fluid" src="../assets/img/img_4.jpg" />
-            </a>
-          </div>
-          <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="work-single.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>Kitchen Sink</h3>
-                <span>Photography</span>
-              </div>
-              <img class="img-fluid" src="../assets/img/img_5.jpg" />
-            </a>
-          </div>
-          <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-            <a href="work-single.html" class="item-wrap fancybox">
-              <div class="work-info">
-                <h3>Amazon</h3>
-                <span>brandingn</span>
-              </div>
-              <img class="img-fluid" src="../assets/img/img_6.jpg" />
-            </a>
-          </div>
+          <template v-for="porto in listPortfolio">
+            <div
+              class="item mobile col-sm-6 col-md-4 col-lg-4 mb-4"
+              data-bs-toggle="modal"
+              data-bs-target="#portoModal"
+              @click="onClickPorto(porto.image)"
+            >
+              <a href="#" class="item-wrap fancybox">
+                <div class="work-info">
+                  <h3>{{ porto.title }}</h3>
+                  <span>{{ porto.type }}</span>
+                </div>
+                <img class="img-fluid" :src="imageSrc(porto.image)" />
+              </a>
+            </div>
+          </template>
         </div>
       </div>
     </section>
+    <div
+      class="modal fade"
+      id="portoModal"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div
+          class="modal-content"
+          style="background-color: transparent !important; border: none !important"
+        >
+          <div class="position-absolute top-0 end-0">
+            <a href="#"
+              ><span
+                class="bi bi-x-lg"
+                style="font-size: 30px; color: black; margin-right: 15px"
+                data-bs-dismiss="modal"
+              ></span
+            ></a>
+          </div>
+          <img :src="imageSrc(imageModal)" />
+        </div>
+      </div>
+    </div>
     <!-- End  Works Section -->
 
     <!-- ======= Services Section ======= -->
-    <section class="section services">
+    <!-- <section class="section services">
       <div class="container">
         <div class="row justify-content-center text-center mb-4">
           <div class="col-5">
@@ -98,7 +94,7 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-6 col-lg-3">
             <i class="bi bi-card-checklist"></i>
-            <h4 class="h4 mb-2">Web Design</h4>
+            <h4 class="h4 mb-2">Website</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit explicabo inventore.</p>
             <ul class="list-unstyled list-line">
               <li>Lorem ipsum dolor sit amet consectetur adipisicing</li>
@@ -146,10 +142,67 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- End Services Section -->
   </main>
   <!-- End #main -->
 
-  <FooterVue />
+  <Footer />
 </template>
+<script lang="ts">
+export default {
+  methods: {
+    imageSrc(image: string) {
+      const res = new URL(`../assets/img/${image}`, import.meta.url).href
+      return res
+    },
+    onClickPorto(image: string) {
+      console.log(import.meta.env.BASE_URL)
+
+      this.imageModal = image
+    }
+  },
+  data() {
+    return {
+      imageModal: '',
+      listPortfolio: [
+        {
+          title: 'AMS',
+          type: 'Mobile',
+          image: 'ams.png'
+        },
+        {
+          title: 'Career support - Candidate',
+          type: 'Mobile',
+          image: 'csm.png'
+        },
+        {
+          title: 'Career support - Company',
+          type: 'Mobile',
+          image: 'csc.png'
+        },
+        {
+          title: 'Fundraising Supporter',
+          type: 'Mobile',
+          image: 'fs.png'
+        },
+        {
+          title: 'Fundraising Group',
+          type: 'Mobile',
+          image: 'fg.png'
+        },
+        {
+          title: 'Contest APP',
+          type: 'Mobile',
+          image: 'contest.png'
+        },
+        {
+          title: 'Superman APP',
+          type: 'Mobile',
+          image: 'sm.png'
+        }
+      ]
+    }
+  }
+}
+</script>

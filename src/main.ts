@@ -7,7 +7,7 @@ import Footer from '../src/components/Footer.vue'
 const app = createApp(App)
 
 app.component('NavBarComponent', NavBarComponent)
-app.component('FooterVue', Footer)
+app.component('Footer', Footer)
 
 app.use(router)
 app.mount('#app')
