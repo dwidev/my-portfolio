@@ -38,7 +38,8 @@
         <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
           <template v-for="porto in listPortfolio">
             <div
-              class="item mobile col-sm-6 col-md-4 col-lg-4 mb-4"
+              :class="porto.type"
+              class="item col-sm-6 col-md-4 col-lg-4 mb-4"
               data-bs-toggle="modal"
               data-bs-target="#portoModal"
               @click="onClickPorto(porto.image)"
@@ -168,37 +169,53 @@ export default {
       listPortfolio: [
         {
           title: 'AMS',
-          type: 'Mobile',
+          type: 'mobile',
           image: 'ams.png'
         },
         {
+          title: 'Career support - Candidate Website',
+          type: 'web',
+          image: 'cscom-web.png'
+        },
+
+        {
           title: 'Career support - Candidate',
-          type: 'Mobile',
+          type: 'mobile',
           image: 'csm.png'
         },
         {
           title: 'Career support - Company',
-          type: 'Mobile',
+          type: 'mobile',
           image: 'csc.png'
         },
         {
+          title: 'Career support - Candidate Website',
+          type: 'web',
+          image: 'cscan-web.png'
+        },
+        {
           title: 'Fundraising Supporter',
-          type: 'Mobile',
+          type: 'mobile',
           image: 'fs.png'
         },
         {
+          title: 'Career support - School Website',
+          type: 'web',
+          image: 'css-web.png'
+        },
+        {
           title: 'Fundraising Group',
-          type: 'Mobile',
+          type: 'mobile',
           image: 'fg.png'
         },
         {
           title: 'Contest APP',
-          type: 'Mobile',
+          type: 'mobile',
           image: 'contest.png'
         },
         {
           title: 'Superman APP',
-          type: 'Mobile',
+          type: 'mobile',
           image: 'sm.png'
         }
       ]
